@@ -22,11 +22,9 @@ Cookiecutter_ template for a Python package.
 Features
 --------
 
-* Testing setup with ``pytest``
-* bump2version_: Pre-configured version bumping with a single command
-* Auto-release to PyPI_ when you push a new tag to master (optional)
-* Command line interface using Click (optional)
-
+* Uses `poetry` for dependency management and packaging.
+* Uses `Dockerfile` in combination with `devcontainer` for VS Code.
+* Uses `pre-commit` hooks.
 .. _Cookiecutter: https://github.com/cookiecutter/cookiecutter
 
 
