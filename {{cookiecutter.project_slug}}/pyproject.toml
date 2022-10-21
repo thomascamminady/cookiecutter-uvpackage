@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "{{ cookiecutter.project_slug }}"
+version = "0.2.0"
+description = ""
+authors = ["{{ cookiecutter.full_name }} <{{ cookiecutter.email }}>"]
+
+[tool.poetry.dependencies]
+python = ">=3.10"
+
+
+[tool.poetry.dev-dependencies]
+pytest = ">=5.2"
+
+[build-system]
+requires = ["poetry-core>=1.2.0"]
+build-backend = "poetry.core.masonry.api"
