@@ -1,0 +1,82 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the README at:
+// https://github.com/microsoft/vscode-dev-containers/tree/v0.231.6/containers/python-3
+{
+  "name": "Python 3",
+  "build": {
+    "dockerfile": "Dockerfile",
+    "context": "..",
+    "args": {
+      // Update 'VARIANT' to pick a Python version: 3, 3.10, 3.9, 3.8, 3.7, 3.6
+      // Use -bullseye variants on local on arm64/Apple Silicon.
+      "VARIANT": "3.10",
+      // Options
+      "POETRY_VERSION": "1.2.2"
+      //"NOX_VERSION": "2022.8.7"
+    }
+  },
+  // Set *default* container specific settings.json values on container create.
+  "settings": {
+    "python.defaultInterpreterPath": "${workspaceFolder}/.venv/bin/python",
+    "python.linting.enabled": true,
+    "python.linting.pylintEnabled": false,
+    "python.formatting.autopep8Path": "/usr/local/py-utils/bin/autopep8",
+    "python.formatting.blackPath": "/usr/local/py-utils/bin/black",
+    "python.formatting.yapfPath": "/usr/local/py-utils/bin/yapf",
+    "python.linting.banditPath": "/usr/local/py-utils/bin/bandit",
+    "python.linting.flake8Path": "/usr/local/py-utils/bin/flake8",
+    "python.linting.mypyPath": "/usr/local/py-utils/bin/mypy",
+    "python.linting.pycodestylePath": "/usr/local/py-utils/bin/pycodestyle",
+    "python.linting.pydocstylePath": "/usr/local/py-utils/bin/pydocstyle",
+    "python.linting.pylintPath": "/usr/local/py-utils/bin/pylint"
+  },
+  // Add the IDs of extensions you want installed when the container is created.
+  "extensions": [
+    "ms-python.python",
+    "gua.rainbow-brackets",
+    "dbaeumer.vscode-eslintignore",
+    "donjayamanne.python-environment-manager",
+    "donjayamanne.python-extension-pack",
+    "esbenp.prettier-vscode",
+    "GrapeCity.gc-excelviewer",
+    "hbenl.vscode-test-explorer",
+    "HookyQR.beautify",
+    "iansan5653.format-python-docstrings",
+    "igordvlpr.open-in-browser",
+    "KevinRose.vsc-python-indent",
+    "littlefoxteam.vscode-python-test-adapter",
+    "mechatroner.rainbow-csv",
+    "ms-toolsai.jupyter",
+    "ms-toolsai.jupyter-keymap",
+    "ms-toolsai.jupyter-renderers",
+    "ms-toolsai.vscode-jupyter-cell-tags",
+    "ms-toolsai.vscode-jupyter-slideshow",
+    "ms-vscode.test-adapter-converter",
+    "njpwerner.autodocstring",
+    "njqdev.vscode-python-typehint",
+    "ritwickdey.LiveServer",
+    "shyykoserhiy.git-autoconfig",
+    "tht13.html-preview-vscode",
+    "trond-snekvik.simple-rst",
+    "VisualStudioExptTeam.intellicode-api-usage-examples",
+    "VisualStudioExptTeam.vscodeintellicode",
+    "wholroyd.jinja",
+    "yzhang.markdown-all-in-one"
+  ],
+  // Use 'forwardPorts' to make a list of ports inside the container available locally.
+  // "forwardPorts": [],
+  // Install project dependencies
+  "postCreateCommand": "bash ./.devcontainer/post-install.sh",
+  // Comment out to connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
+  "remoteUser": "vscode",
+  "features": {
+    "ghcr.io/devcontainers/features/github-cli:1": {
+      "version": "latest"
+    }
+  },
+  "mounts": [
+    // Re-use local Git configuration
+    "source=${localEnv:HOME}/.gitconfig,target=/home/vscode/.gitconfig,type=bind,consistency=cached"
+    // mount home
+    //"source=${localEnv:HOME}/,target=/home/vscode/,type=bind,consistency=cached"
+  ]
+}
