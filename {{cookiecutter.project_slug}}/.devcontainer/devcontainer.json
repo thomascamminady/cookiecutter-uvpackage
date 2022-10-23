@@ -16,6 +16,7 @@
   },
   // Set *default* container specific settings.json values on container create.
   "settings": {
+    "python.envFile": "${workspaceFolder}/.venv",
     "python.defaultInterpreterPath": "${workspaceFolder}/.venv/bin/python",
     "python.linting.enabled": true,
     "python.linting.pylintEnabled": false,
