@@ -18,5 +18,4 @@ RUN pip install pyclean
 RUN pip install pre-commit
 
 COPY .pre-commit-config.yaml .
-COPY ~/.gitconfig  /home/vscode/
 RUN git init .
