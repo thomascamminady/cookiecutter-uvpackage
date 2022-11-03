@@ -18,4 +18,4 @@ RUN pip install pyclean
 RUN pip install pre-commit
 
 COPY .pre-commit-config.yaml .
-RUN git init .
+RUN git init . && pre-commit install-hooks && rm -rf .git
