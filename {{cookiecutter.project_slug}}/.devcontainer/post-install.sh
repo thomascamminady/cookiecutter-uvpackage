@@ -9,12 +9,12 @@ echo 'alias pytestcov="pytest --cov=devcontainer_tutorial tests/"' >> $HOME/.bas
 WORKSPACE_DIR=$(pwd)
 
 # Change some Poetry settings to better deal with working in a container
-poetry self update
+# poetry self update
 poetry config cache-dir ${WORKSPACE_DIR}/.cache
 poetry config virtualenvs.in-project true
 
 poetry install
 #pre-commit autoupdate
 
-clear
+# clear
 poetry shell
