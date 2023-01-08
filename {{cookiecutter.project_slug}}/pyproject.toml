@@ -11,9 +11,8 @@ ipykernel = "^6.16.1"
 
 [tool.poetry.dev-dependencies]
 pytest = ">=7.0"
-
-[tool.poetry.group.dev.dependencies]
 pyclean = "^2.2.0"
+
 
 [build-system]
 requires = ["poetry-core>=1.2.0"]
