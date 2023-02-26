@@ -7,12 +7,12 @@ authors = ["{{ cookiecutter.full_name }} <{{ cookiecutter.email }}>"]
 [tool.poetry.dependencies]
 python = ">=3.10,<4"
 
-
-[tool.poetry.dev-dependencies]
+[tool.poetry.group.dev.dependencies]
+mypy = "^1.0.1"
+black = "^23.1.0"
 pytest = ">=7.0"
 pyclean = "^2.2.0"
 ipykernel = "^6.16.1"
-
 
 [build-system]
 requires = ["poetry-core>=1.2.0"]
