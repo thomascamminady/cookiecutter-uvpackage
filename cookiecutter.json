@@ -4,7 +4,7 @@
   "github_username": "thomascamminady",
   "project_name": "My Project",
   "project_slug": "{{ cookiecutter.project_name.lower().replace(' ', '_').replace('-', '_') }}",
-  "project_short_description": " ",
+  "project_short_description": "",
   "pypi_username": "{{ cookiecutter.github_username }}",
   "add_pyup_badge": "n",
   "version": "0.1.0",
