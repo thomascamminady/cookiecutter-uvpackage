@@ -4,6 +4,9 @@ init:
 	poetry install
 	poetry update
 	git init
+	git lfs install
+	git lfs track "*.fit"
+	git lfs track "*.hdf5"
 	poetry run pre-commit install
 	git add .
 	poetry run pre-commit run --all
