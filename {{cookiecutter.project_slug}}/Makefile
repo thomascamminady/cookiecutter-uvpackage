@@ -11,7 +11,7 @@ init:
 	git add .
 	poetry run pre-commit run --all
 	git commit -am "Initial commit after initializing project with cookiecutter."
-
+	poetry shell 
 test:
 	pytest .
 
