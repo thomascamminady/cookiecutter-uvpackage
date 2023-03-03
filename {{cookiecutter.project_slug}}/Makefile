@@ -9,5 +9,6 @@ init:
 
 make test:
 	pytest .
+	
 make coverage:
 	pytest --cov={{cookiecutter.project_slug}} tests/
