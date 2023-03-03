@@ -7,10 +7,9 @@ init:
 	git lfs install
 	git lfs track "*.fit"
 	git lfs track "*.hdf5"
-	poetry run pre-commit install
 	git add .
 	poetry run pre-commit run --all-files
-	git commit -am "Initial commit after initializing project with cookiecutter."
+	git commit -am "Initial commit after initializing the project."
 	poetry shell
 
 test:
