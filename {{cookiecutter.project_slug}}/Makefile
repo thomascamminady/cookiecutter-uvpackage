@@ -1,5 +1,5 @@
 init:
-	code . 
+	code .
 	poetry env use 3.10
 	poetry install
 	git init
