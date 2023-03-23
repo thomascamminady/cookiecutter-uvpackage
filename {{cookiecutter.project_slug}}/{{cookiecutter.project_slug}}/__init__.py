@@ -1,6 +1,6 @@
 """Top-level package for {{ cookiecutter.project_name }}."""
-from {{ cookiecutter.project_name }}.utils.config import config
-from {{ cookiecutter.project_name }}.utils.logger import logger
+from {{cookiecutter.project_slug}}.utils.config import config
+from {{cookiecutter.project_slug}}.utils.logger import logger
 
 __all__ = ["config", "logger"]
 __author__ = """{{ cookiecutter.full_name }}"""

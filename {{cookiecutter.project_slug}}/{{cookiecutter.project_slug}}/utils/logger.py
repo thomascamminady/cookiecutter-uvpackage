@@ -3,7 +3,7 @@ import os
 
 from rich.logging import RichHandler
 
-from {{ cookiecutter.project_name }} import config
+from {{cookiecutter.project_slug}} import config
 
 logger = logging.getLogger(__name__)
 

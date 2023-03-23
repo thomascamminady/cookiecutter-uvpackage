@@ -3,6 +3,7 @@ init:
 	poetry env use 3.10
 	poetry install
 	poetry update
+	git init
 	echo "logs/" >> .gitignore
 	git lfs install
 	git lfs track "*.fit"
