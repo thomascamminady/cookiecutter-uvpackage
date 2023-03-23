@@ -1,9 +1,11 @@
 init:
 	code .
+	poetry config --local virtualenvs.in-project true
 	poetry env use 3.10
 	poetry install
 	poetry update
 	git init
+	echo ".venv/" >> .gitignore
 	echo "logs/" >> .gitignore
 	git lfs install
 	git lfs track "*.fit"
