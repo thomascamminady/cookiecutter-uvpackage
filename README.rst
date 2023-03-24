@@ -40,6 +40,8 @@ A project folder with the following layout will be created::
             ├── config.py
             └── logger.py
 
+The variable ``{{cookiecutter.project_slug}}`` will be replaced by your project name. 
+
 Quickstart
 ----------
 
