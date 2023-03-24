@@ -16,8 +16,25 @@ Features
 * Can be configured with a single command.
 * Strikes a balance between complexity and simplicity, tailored towards data scientists.
 
+Quickstart
+----------
 
-Project folder
+Install the latest Cookiecutter if you haven't installed it yet (this requires
+Cookiecutter 1.4.0 or higher)::
+
+    pip install -U cookiecutter
+
+Generate a Python package project::
+
+    cookiecutter https://github.com/thomascamminady/cookiecutter-pypackage
+
+Change into the new project folder and run::
+
+    make init
+
+Note that for this to work, you **must** not be in an active ``poetry`` environment.
+
+Folder content
 --------
 A project folder with the following layout will be created::
 
@@ -50,22 +67,5 @@ A project folder with the following layout will be created::
             └── logger.py
 The variable ``{{cookiecutter.project_slug}}`` will be replaced by your project name.
 
-Quickstart
-----------
-
-Install the latest Cookiecutter if you haven't installed it yet (this requires
-Cookiecutter 1.4.0 or higher)::
-
-    pip install -U cookiecutter
-
-Generate a Python package project::
-
-    cookiecutter https://github.com/thomascamminady/cookiecutter-pypackage
-
-Change into the new project folder and run::
-
-    make init
-
-Note that for this to work, you **must** not be in an active ``poetry`` environment.
 
 .. _Cookiecutter: https://github.com/cookiecutter/cookiecutter
