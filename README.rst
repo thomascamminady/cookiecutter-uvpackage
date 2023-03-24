@@ -16,6 +16,30 @@ Features
 * Can be configured with a single command.
 * Strikes a balance between complexity and simplicity, tailored towards data scientists.
 
+
+Project folder
+--------
+A project folder with the following layout will be created::
+
+    .
+    ├── LICENSE
+    ├── Makefile
+    ├── README.rst
+    ├── data
+    ├── notebooks
+    │   ├── main.ipynb
+    │   └── output
+    ├── pyproject.toml
+    ├── tests
+    │   ├── __init__.py
+    │   └── test_{{cookiecutter.project_slug}}.py
+    └── {{cookiecutter.project_slug}}
+        ├── __init__.py
+        └── utils
+            ├── __init__.py
+            ├── config.py
+            └── logger.py
+
 Quickstart
 ----------
 
