@@ -48,7 +48,7 @@ A project folder with the following layout will be created::
             ├── __init__.py
             ├── config.py
             └── logger.py
-The variable ``{{cookiecutter.project_slug}}`` will be replaced by your project name. 
+The variable ``{{cookiecutter.project_slug}}`` will be replaced by your project name.
 
 Quickstart
 ----------
@@ -61,10 +61,11 @@ Cookiecutter 1.4.0 or higher)::
 Generate a Python package project::
 
     cookiecutter https://github.com/thomascamminady/cookiecutter-pypackage
-    
+
 Change into the new project folder and run::
 
-    make init 
-    
-    
+    make init
+
+Note that for this to work, you *must* not be in an active ``poetry`` environment.
+
 .. _Cookiecutter: https://github.com/cookiecutter/cookiecutter
