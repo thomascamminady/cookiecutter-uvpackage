@@ -13,7 +13,7 @@ Features
 
 * Uses `poetry` for dependency management and packaging.
 * Uses `pre-commit` hooks.
-* Can be set up with one command by running ``make init`` inside the created folder.
+* Can be configured with a single command.
 * Strikes a balance between complexity and simplicity, tailored towards data scientists.
 
 Quickstart
