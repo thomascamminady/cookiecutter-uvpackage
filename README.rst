@@ -5,6 +5,7 @@ Cookiecutter PyPackage
 Cookiecutter_ template for a Python package.
 
 * GitHub repo: https://github.com/thomascamminady/cookiecutter-pypackage
+* Forked from: https://github.com/audreyfeldroy/cookiecutter-pypackage
 * Free software: BSD license
 
 Features
@@ -13,6 +14,7 @@ Features
 * Uses `poetry` for dependency management and packaging.
 * Uses `pre-commit` hooks.
 * Can be set up with one command by running ``make init`` inside the created folder.
+* Strikes a balance between complexity and simplicity, tailored towards data scientists.
 
 Quickstart
 ----------
@@ -25,5 +27,10 @@ Cookiecutter 1.4.0 or higher)::
 Generate a Python package project::
 
     cookiecutter https://github.com/thomascamminady/cookiecutter-pypackage
+    
+Change into the new project folder and run::
 
+    make init 
+    
+    
 .. _Cookiecutter: https://github.com/cookiecutter/cookiecutter
