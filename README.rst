@@ -66,6 +66,6 @@ Change into the new project folder and run::
 
     make init
 
-Note that for this to work, you *must* not be in an active ``poetry`` environment.
+Note that for this to work, you **must** not be in an active ``poetry`` environment.
 
 .. _Cookiecutter: https://github.com/cookiecutter/cookiecutter
