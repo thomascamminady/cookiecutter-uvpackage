@@ -2,19 +2,8 @@
 Cookiecutter PyPackage
 ======================
 
-.. image:: https://pyup.io/repos/github/audreyfeldroy/cookiecutter-pypackage/shield.svg
-    :target: https://pyup.io/repos/github/audreyfeldroy/cookiecutter-pypackage/
-    :alt: Updates
-
-.. image:: https://travis-ci.org/audreyfeldroy/cookiecutter-pypackage.svg?branch=master
-    :target: https://travis-ci.org/github/audreyfeldroy/cookiecutter-pypackage
-    :alt: Build Status
-
-.. image:: https://readthedocs.org/projects/cookiecutter-pypackage/badge/?version=latest
-    :target: https://cookiecutter-pypackage.readthedocs.io/en/latest/?badge=latest
-    :alt: Documentation Status
-
 Cookiecutter_ template for a Python package.
+.. _Cookiecutter: https://github.com/cookiecutter/cookiecutter
 
 * GitHub repo: https://github.com/thomascamminady/cookiecutter-pypackage
 * Free software: BSD license
@@ -23,11 +12,8 @@ Features
 --------
 
 * Uses `poetry` for dependency management and packaging.
-* Uses `Dockerfile` in combination with `devcontainer` for VS Code.
 * Uses `pre-commit` hooks.
-.. _Cookiecutter: https://github.com/cookiecutter/cookiecutter
-
-
+* Can be set up with one command by running ``make init`` inside the created folder.
 
 Quickstart
 ----------
