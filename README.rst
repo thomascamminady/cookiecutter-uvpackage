@@ -22,13 +22,22 @@ Project folder
 A project folder with the following layout will be created::
 
     .
+    ├── .editorconfig
+    ├── .gitattributes
+    ├── .gitignore
+    ├── .pre-commit-config.yaml
+    ├── .vscode
+    │   ├── settings.json
+    │   └── {{cookiecutter.project_slug}}.code-workspace
     ├── LICENSE
     ├── Makefile
     ├── README.rst
     ├── data
+    │   └── .gitkeep
     ├── notebooks
     │   ├── main.ipynb
     │   └── output
+    │       └── .gitkeep
     ├── pyproject.toml
     ├── tests
     │   ├── __init__.py
@@ -39,7 +48,6 @@ A project folder with the following layout will be created::
             ├── __init__.py
             ├── config.py
             └── logger.py
-
 The variable ``{{cookiecutter.project_slug}}`` will be replaced by your project name. 
 
 Quickstart
