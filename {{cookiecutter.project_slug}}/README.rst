@@ -12,7 +12,7 @@
 
 {{ cookiecutter.project_short_description }}
 
-Install
+Development
 --------
 To set up the project, simply run
 
