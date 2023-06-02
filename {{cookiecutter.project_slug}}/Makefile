@@ -13,6 +13,7 @@ init:
 	git lfs track "*.hdf5"
 	git lfs track "*.html"
 	git lfs track "*.parquet"
+	poetry export -f requirements.txt --output requirements.txt
 	git add .
 	poetry run pre-commit run --all-files
 	git commit -am "Initial commit after initializing the project."

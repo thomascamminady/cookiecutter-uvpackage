@@ -17,7 +17,6 @@ ipykernel = "^6.16.1"
 pytest = "^7.2.1"
 pytest-cov = "^4.0.0"
 rich = "^13.3.2"
-pdoc = "^13.1.1"
 
 [build-system]
 requires = ["poetry-core>=1.2.0"]
