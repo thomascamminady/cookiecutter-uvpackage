@@ -2,7 +2,7 @@ init:
 	code .
 	poetry config --local virtualenvs.create true
 	poetry config --local virtualenvs.in-project true
-	poetry env use 3.10
+	poetry env use 3.11
 	poetry install
 	poetry update
 	git init
