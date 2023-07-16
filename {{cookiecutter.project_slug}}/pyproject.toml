@@ -5,7 +5,7 @@ description = ""
 authors = ["{{ cookiecutter.full_name }} <{{ cookiecutter.email }}>"]
 
 [tool.poetry.dependencies]
-python = "^3.10"
+python = "^3.10,<3.12"
 
 [tool.poetry.group.dev.dependencies]
 mypy = "^1.0.1"
