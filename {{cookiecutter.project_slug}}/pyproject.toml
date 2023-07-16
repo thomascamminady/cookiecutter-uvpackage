@@ -5,19 +5,19 @@ description = ""
 authors = ["{{ cookiecutter.full_name }} <{{ cookiecutter.email }}>"]
 
 [tool.poetry.dependencies]
-python = "^3.10,<3.12"
+python = ">=3.11,<3.12"
 
 [tool.poetry.group.dev.dependencies]
-mypy = "^1.0.1"
-ruff = "^0.0.253"
-black = "^23.1.0"
-pyclean = "^2.2.0"
-pre-commit = "^3.1.1"
-ipykernel = "^6.16.1"
-pytest = "^7.2.1"
-pytest-cov = "^4.0.0"
-rich = "^13.3.2"
-regex = "^2023.5.5"
+mypy = ">=1.0.1"
+ruff = ">=0.0.253"
+black = ">=23.1.0"
+pyclean = ">=2.2.0"
+pre-commit = ">=3.1.1"
+ipykernel = ">=6.16.1"
+pytest = ">=7.2.1"
+pytest-cov = ">=4.0.0"
+rich = ">=13.3.2"
+regex = ">=2023.5.5"
 
 
 [build-system]
