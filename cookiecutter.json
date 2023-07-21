@@ -17,5 +17,5 @@
         "GNU General Public License v3",
         "Not open source"
     ],
-    " ": "\n\n\n\n\tThere are three things you need to do now:\n\t\n\t1) Create a Github repository with the name {{cookiecutter.project_slug}}.\n\t2) In that repo, go to Settings -> Pages -> Build and deployment -> Source and choose Github Actions.\n\t3) cd {{cookiecutter.project_slug}}; make\n\n\tPress enter and start hacking!\n \n \n"
+    " ": "\n\n\n\n\tThere are three things you need to do now:\n\t\n\t1) Create a Github repo with the name {{cookiecutter.project_slug}}.\n\t2) In that repo, go to Settings -> Pages -> Build and deployment -> Source and choose Github Actions.\n\t3) cd {{cookiecutter.project_slug}}; make\n\n\tPress enter and start hacking!\n \n \n"
 }
