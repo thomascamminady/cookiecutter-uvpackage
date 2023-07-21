@@ -1,12 +1,20 @@
 {
-  "full_name": "Thomas Camminady",
-  "email": "0milieux_member@icloud.com",
-  "github_username": "thomascamminady",
-  "project_name": "My Project",
-  "project_slug": "{{ cookiecutter.project_name.lower().replace(' ', '_').replace('-', '_') }}",
-  "project_short_description": "",
-  "pypi_username": "{{ cookiecutter.github_username }}",
-  "add_pyup_badge": "n",
-  "version": "0.1.0",
-  "open_source_license": ["MIT license", "BSD license", "ISC license", "Apache Software License 2.0", "GNU General Public License v3", "Not open source"]
+    "full_name": "Thomas Camminady",
+    "email": "0milieux_member@icloud.com",
+    "github_username": "thomascamminady",
+    "project_name": "My Project",
+    "project_slug": "{{ cookiecutter.project_name.lower().replace(' ', '_').replace('-', '_') }}",
+    "github_reponame": "{{cookiecutter.project_slug}}",
+    "project_short_description": "",
+    "pypi_username": "{{ cookiecutter.github_username }}",
+    "add_pyup_badge": "n",
+    "version": "0.1.0",
+    "open_source_license": [
+        "MIT license",
+        "BSD license",
+        "ISC license",
+        "Apache Software License 2.0",
+        "GNU General Public License v3",
+        "Not open source"
+    ]
 }
