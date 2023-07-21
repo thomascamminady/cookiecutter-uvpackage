@@ -14,11 +14,7 @@
 
 Development
 --------
-To set up the project, simply run
-
-.. code-block:: bash
-
-   make init
+Set up the full project by running ``make``.
 
 
 Credits
