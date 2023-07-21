@@ -4,15 +4,12 @@ Cookiecutter PyPackage
 
 Cookiecutter_ template for a Python package.
 
-* GitHub repo: https://github.com/thomascamminady/cookiecutter-pypackage
-* Forked from: https://github.com/audreyfeldroy/cookiecutter-pypackage
-* Free software: BSD license
-
 Features
 --------
 
 * Uses ``poetry`` for dependency management and packaging.
 * Uses ``pre-commit`` hooks.
+* Deploys ``pdoc`` documentation via Github Pages.
 * Can be configured with a single command.
 * Strikes a balance between complexity and simplicity, tailored towards data scientists.
 
@@ -30,42 +27,13 @@ Generate a Python package project::
 
 Change into the new project folder and run::
 
-    make init
+    make
 
 Note that for this to work, you **must** not be in an active ``poetry`` environment.
 
-Folder content
---------
-A project folder with the following layout will be created::
 
-    .
-    ├── .editorconfig
-    ├── .gitattributes
-    ├── .gitignore
-    ├── .pre-commit-config.yaml
-    ├── .vscode
-    │   ├── settings.json
-    │   └── {{cookiecutter.project_slug}}.code-workspace
-    ├── LICENSE
-    ├── Makefile
-    ├── README.rst
-    ├── data
-    │   └── .gitkeep
-    ├── notebooks
-    │   ├── main.ipynb
-    │   └── output
-    │       └── .gitkeep
-    ├── pyproject.toml
-    ├── tests
-    │   ├── __init__.py
-    │   └── test_{{cookiecutter.project_slug}}.py
-    └── {{cookiecutter.project_slug}}
-        ├── __init__.py
-        └── utils
-            ├── __init__.py
-            ├── config.py
-            └── logger.py
-The variable ``{{cookiecutter.project_slug}}`` will be replaced by your project name.
-
+* GitHub repo: https://github.com/thomascamminady/cookiecutter-pypackage
+* Forked from: https://github.com/audreyfeldroy/cookiecutter-pypackage
+* Free software: BSD license
 
 .. _Cookiecutter: https://github.com/cookiecutter/cookiecutter
