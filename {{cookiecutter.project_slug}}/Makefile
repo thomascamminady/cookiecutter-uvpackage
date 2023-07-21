@@ -7,6 +7,7 @@ all:
 	if command -v code > /dev/null; then code .; fi
 	$(MAKE) poetry
 	$(MAKE) git
+	$(MAKE) remotegit
 
 poetry:
 	poetry config --local virtualenvs.create true
@@ -30,6 +31,11 @@ git:
 	poetry run pre-commit install
 	poetry run pre-commit run --all-files
 	git commit -am "Initial commit after initializing the project."
+
+remotegit:
+	git remote add origin git@github.com:{{ cookiecutter.github_username }}/{{ cookiecutter.github_reponame }}.git
+	git branch -M main
+	git push -u origin main
 
 test:
 	poetry run pytest .
