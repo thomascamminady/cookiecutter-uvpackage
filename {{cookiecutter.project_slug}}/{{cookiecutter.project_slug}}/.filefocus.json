@@ -1,0 +1,29 @@
+{
+    "store": [
+        {
+            "name": "meta",
+            "path": [
+                ".filefocus.json",
+                "LICENSE",
+                "poetry.lock",
+                "poetry.toml",
+                "requirements.txt",
+                ".editorconfig",
+                ".gitattributes",
+                ".nojekyll",
+                ".luarc.json",
+                ".vscode",
+                ".gitignore",
+                ".mypy_cache",
+                ".quarto",
+                "_freeze",
+                ".venv",
+                ".ruff_cache",
+                ".pre-commit-config.yaml",
+                "CNAME",
+                "Makefile",
+                "pyproject.toml"
+            ]
+        }
+    ]
+}
