@@ -6,7 +6,6 @@ authors = ["{{ cookiecutter.full_name }} <{{ cookiecutter.email }}>"]
 
 [tool.poetry.dependencies]
 python = ">=3.10,<3.12"
-pyclean = "^2.7.3"
 
 [tool.poetry.group.dev.dependencies]
 mypy = "^1.4.1"
@@ -19,6 +18,8 @@ pytest = "^7.4.0"
 pytest-cov = "^4.1.0"
 rich = "^13.4.2"
 regex = "^2023.6.3"
+pylint = "^3.0.1"
+
 
 [build-system]
 requires = ["poetry-core>=1.5.0"]
