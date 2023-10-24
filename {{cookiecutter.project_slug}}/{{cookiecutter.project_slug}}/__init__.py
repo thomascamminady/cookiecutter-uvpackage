@@ -1,6 +1,4 @@
-"""
-.. include:: ../README.md
-"""
-__author__ = """{{ cookiecutter.full_name }}"""
-__email__ = "{{ cookiecutter.email }}"
-__version__ = "{{ cookiecutter.version }}"
+""".. include:: ../README.md."""
+__author__ = """Thomas Camminady"""
+__email__ = "0milieux_member@icloud.com"
+__version__ = "0.1.0"
