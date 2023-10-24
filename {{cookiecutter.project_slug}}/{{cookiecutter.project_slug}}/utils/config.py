@@ -1,12 +1,8 @@
 import logging  # Importing the standard Python logging module
-from dataclasses import (
-    dataclass,
-)
+from dataclasses import dataclass
 
 # Importing the dataclass decorator from Python's built-in dataclasses module
-from pathlib import (
-    Path,
-)
+from pathlib import Path
 
 
 # Define a dataclass for the application's configuration.
@@ -30,6 +26,6 @@ class Config:
     # Define the log formats for shell and file handlers
     # These formats determine how the log messages will be formatted
     logger_shell_fmt: str = "%(message)s"
-    logger_file_fmt: str = (
-        "%(levelname)s %(asctime)s [%(filename)s:%(funcName)s:%(lineno)d] \t%(message)s"
-    )
+    logger_file_fmt: (
+        str
+    ) = "%(levelname)s %(asctime)s [%(filename)s:%(funcName)s:%(lineno)d] \t%(message)s"
