@@ -1,6 +1,6 @@
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.4.0
+    rev: v4.5.0
     hooks:
       - id: check-added-large-files
       - id: check-merge-conflict
@@ -13,22 +13,22 @@ repos:
         exclude: '.*\.(txt|csv)'
 
   - repo: https://github.com/asottile/pyupgrade
-    rev: v3.9.0
+    rev: v3.15.0
     hooks:
       - id: pyupgrade
         name: pyupgrade (.py files)
 
   - repo: https://github.com/charliermarsh/ruff-pre-commit
-    rev: 'v0.0.278'
+    rev: 'v0.1.11'
     hooks:
       - id: ruff
         args: [--fix, --exit-non-zero-on-fix]
 
-  - repo: https://github.com/psf/black
-    rev: 23.7.0
-    hooks:
-      - id: black
-        name: black (.py files)
+  # - repo: https://github.com/psf/black
+  #   rev: 23.7.0
+  #   hooks:
+  #     - id: black
+  #       name: black (.py files)
 
   - repo: https://github.com/kynan/nbstripout
     rev: 0.6.1
@@ -37,7 +37,7 @@ repos:
         name: nbstripout (.ipynb files)
 
   - repo: https://github.com/nbQA-dev/nbQA
-    rev: 1.7.0
+    rev: 1.7.1
     hooks:
       - id: nbqa-pyupgrade
         args: ['--py39-plus']
