@@ -4,6 +4,9 @@ version = "0.1.0"
 description = ""
 authors = ["{{ cookiecutter.full_name }} <{{ cookiecutter.email }}>"]
 readme = "README.md"
+homepage = ""
+repository = ""
+documentation = ""
 
 
 [tool.poetry.dependencies]
