@@ -4,8 +4,8 @@ version = "0.1.0"
 description = ""
 authors = ["{{ cookiecutter.full_name }} <{{ cookiecutter.email }}>"]
 readme = "README.md"
-# homepage = ""
-# repository = ""
+repository = "https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.github_reponame }}"
+homepage = "https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.github_reponame }}"
 # documentation = ""
 
 
