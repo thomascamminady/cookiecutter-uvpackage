@@ -63,7 +63,10 @@ convention = "numpy"
 "tests/*" = ["S101"]
 
 [tool.ruff.lint.per-file-ignores]
-"**/__init__.py" = ["D200"]
+"**/__init__.py" = [
+    "D200",
+    "D400",
+]
 
 [tool.pylint.MASTER]
 disable=[
