@@ -67,3 +67,16 @@ disable=[
     "C0114", # missing-module-docstring
     "C0115", # missing-class-docstring
 ]
+
+[tool.pyright]
+exclude = [
+    ".venv/*",
+    ".mypy_cache/*",
+    ".pytest_cache/*",
+    ".ruff_cache/*",
+    ".ipynb_checkpoints/*",
+    ".git/*",
+    ".github/*",
+    "**/__pycache__/*",
+    "**/*.pyc",
+]
