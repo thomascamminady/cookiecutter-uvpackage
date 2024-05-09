@@ -25,6 +25,7 @@ git:
 	echo "Makefile" >> .gitignore
 	echo "logs/" >> .gitignore
 	echo ".venv/" >> .gitignore
+	echo ".vscode/" >> .gitignore
 	echo ".pytest_cache/" >> .gitignore
 	echo ".ruff_cache/" >> .gitignore
 	echo ".editorconfig/" >> .gitignore
