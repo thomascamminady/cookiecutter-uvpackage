@@ -1,4 +1,4 @@
-Find this repository on [Github](https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.github_reponame }}) or check out the [documentation](https://{{ cookiecutter.github_username }}.github.io/{{ cookiecutter.github_reponame }}/{{ cookiecutter.github_reponame }}.html).
+Find this repository on [Github](https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.github_reponame }}) or check out the [documentation](https://{{ cookiecutter.github_username }}.github.io/{{ cookiecutter.github_reponame }}).
 
 
 ## Development
