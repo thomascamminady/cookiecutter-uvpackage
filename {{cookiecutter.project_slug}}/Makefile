@@ -4,10 +4,10 @@ SHELL := /bin/bash
 .PHONY: all poetry git test coverage
 
 all:
-	if command -v code > /dev/null; then code .; fi
 	$(MAKE) poetry
 	$(MAKE) git
 	$(MAKE) remotegit
+	if command -v code > /dev/null; then code .; fi
 
 poetry:
 	poetry config --local virtualenvs.create true
@@ -21,16 +21,18 @@ poetry:
 
 git:
 	git init
-	echo ".venv/" >> .gitignore
+	echo "notebooks/" >> .gitignore
+	echo "Makefile" >> .gitignore
 	echo "logs/" >> .gitignore
+	echo ".venv/" >> .gitignore
+	echo ".pytest_cache/" >> .gitignore
+	echo ".ruff_cache/" >> .gitignore
+	echo ".editorconfig/" >> .gitignore
 	git lfs install
-	git lfs track "*.fit"
-	git lfs track "*.hdf5"
-	git lfs track "*.parquet"
 	git add .
 	poetry run pre-commit install
 	poetry run pre-commit run --all-files
-	git commit -am "Initial commit after initializing the project."
+	git commit -am "First commit after initializing the project."
 
 remotegit:
 	git remote add origin git@github.com:{{ cookiecutter.github_username }}/{{ cookiecutter.github_reponame }}.git
