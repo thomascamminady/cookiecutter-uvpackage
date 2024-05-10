@@ -17,7 +17,7 @@ poetry:
 	else echo "Neither Python 3.11 nor Python 3.10 were found. Please install one of them."; exit 1; fi
 	poetry install
 	poetry update
-	poetry export -f requirements.txt --output requirements.txt
+	# poetry export -f requirements.txt --output requirements.txt
 
 git:
 	git init
@@ -29,6 +29,7 @@ git:
 	echo ".pytest_cache/" >> .gitignore
 	echo ".ruff_cache/" >> .gitignore
 	echo ".editorconfig/" >> .gitignore
+	echo "poetry.toml" >> .gitignore
 	git lfs install
 	git add .
 	poetry run pre-commit install
