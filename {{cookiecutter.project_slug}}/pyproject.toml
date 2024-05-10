@@ -32,12 +32,12 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.ruff]
 ignore = [
-  "D100",
-  "D101",
-  "D103",
-  "D104",
-  "D401",
-  "E501",
+    "D100",
+    "D101",
+    "D103",
+    "D104",
+    "D401",
+    "E501",
 ]
 line-length = 80
 select = [
