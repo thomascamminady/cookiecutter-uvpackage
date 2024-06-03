@@ -6,8 +6,8 @@ SHELL := /bin/bash
 all:
 	$(MAKE) poetry
 	$(MAKE) git
-	$(MAKE) remotegit
 	if command -v code > /dev/null; then code .; fi
+	$(MAKE) remotegit
 
 poetry:
 	poetry config --local virtualenvs.create true
