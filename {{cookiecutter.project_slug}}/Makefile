@@ -28,9 +28,9 @@ git:
 	git commit -am "First commit after initializing the project."
 
 remotegit:
-	git remote add origin git@github.com:{{ cookiecutter.github_username }}/{{ cookiecutter.github_reponame }}.git
 	git branch -M main
-	git push -u origin main
+	-git remote add origin git@github.com:{{ cookiecutter.github_username }}/{{ cookiecutter.github_reponame }}.git
+	-git push -u origin main
 
 test:
 	poetry run pytest .
