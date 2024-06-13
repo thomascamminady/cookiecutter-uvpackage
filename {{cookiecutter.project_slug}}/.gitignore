@@ -167,4 +167,6 @@ logs/
 .pytest_cache/
 .ruff_cache/
 .editorconfig
+data/.gitkeep
+data/
 poetry.toml
