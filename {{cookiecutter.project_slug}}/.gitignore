@@ -158,3 +158,13 @@ cython_debug/
 *.jpg
 
 *.pyc
+
+notebooks/
+Makefile
+logs/
+.venv/
+.vscode/
+.pytest_cache/
+.ruff_cache/
+.editorconfig
+poetry.toml

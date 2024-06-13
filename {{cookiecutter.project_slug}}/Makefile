@@ -21,15 +21,6 @@ poetry:
 
 git:
 	git init
-	echo "notebooks/" >> .gitignore
-	echo "Makefile" >> .gitignore
-	echo "logs/" >> .gitignore
-	echo ".venv/" >> .gitignore
-	echo ".vscode/" >> .gitignore
-	echo ".pytest_cache/" >> .gitignore
-	echo ".ruff_cache/" >> .gitignore
-	echo ".editorconfig/" >> .gitignore
-	echo "poetry.toml" >> .gitignore
 	git lfs install
 	git add .
 	poetry run pre-commit install
