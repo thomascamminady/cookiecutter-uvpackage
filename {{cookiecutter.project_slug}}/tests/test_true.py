@@ -2,5 +2,5 @@
 
 
 def test_true() -> None:
-    """At leas one test will always pass :)."""
+    """At least one test will always pass :)."""
     assert True
