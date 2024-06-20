@@ -6,7 +6,7 @@ SHELL := /bin/bash
 all:
 	$(MAKE) poetry
 	$(MAKE) git
-	if command -v code > /dev/null; then code . --profile "Wahooligan"; fi
+	if command -v code > /dev/null; then code . ; fi
 	$(MAKE) remotegit
 
 poetry:
