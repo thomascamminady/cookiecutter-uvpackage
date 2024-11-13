@@ -1,0 +1,44 @@
+# TO ALLOW THIS ACTION TO PUSH YOU HAVE TO GO TO: SETTINGS > ACTIONS > GENERAL > WORKFLOW PERMESSIONS: READ AND WRITE PERMISSIONS
+
+# name: Update data
+
+# on:
+#   workflow_dispatch: # Allows you to run the workflow manually from GitHub
+#   schedule:
+#     - cron: '0 * * * *' # Run daily at midnight (adjust as needed)
+
+# jobs:
+#   run-script:
+#     runs-on: ubuntu-latest
+
+#     steps:
+#       - name: Checkout Repository
+#         uses: actions/checkout@v3
+
+#       - name: Set up Python
+#         uses: actions/setup-python@v4
+#         with:
+#           python-version: '3.11'  # Specify the version you need
+
+#       - name: Install Poetry
+#         run: |
+#           curl -sSL https://install.python-poetry.org | python3 -
+#           echo "$HOME/.local/bin" >> $GITHUB_PATH
+
+#       - name: Install Dependencies with Poetry
+#         run: poetry install
+
+#       - name: Run Python Script
+#         run: poetry run python dawum_crawl/run.py  # Adjust script path if needed
+
+#       - name: Commit and Push CSV File
+#         run: |
+#           git config --global user.name "GitHub Actions Bot"
+#           git config --global user.email "actions@github.com"
+#           git add data/dawum.csv
+#           git add data/dawum_pivot.csv
+#           add add data/Polling.csv
+#           git commit -m "Automated commit of generated CSV"
+#           git push origin HEAD:${{ github.ref }}  # Pushes to the current branch
+#         env:
+#           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
