@@ -2,33 +2,30 @@
 name = "{{ cookiecutter.project_slug }}"
 version = "0.1.0"
 description = ""
-authors = ["{{ cookiecutter.full_name }} <{{ cookiecutter.email }}>"]
+authors = [
+    { name = "{{ cookiecutter.full_name }}", email = "{{ cookiecutter.email }}" }
+]
 readme = "README.md"
 repository = "https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.github_reponame }}"
 homepage = "https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.github_reponame }}"
 documentation = "https://{{ cookiecutter.github_username }}.github.io/{{ cookiecutter.github_reponame }}"
-
-
-[tool.poetry.dependencies]
-python = "3.11.*"
-
-
-[tool.poetry.group.dev.dependencies]
-ruff = "^0.5.7"
-mypy = "^1.10.1"
-isort = "^5.13.2"
-pyclean = "^3.0.0"
-pre-commit = "^3.8.0"
-ipykernel = "^6.29.5"
-pytest = "^8.2.2"
-pytest-cov = "^5.0.0"
-rich = "^13.7.1"
-regex = "^2024.5.15"
-pylint = "^3.2.6"
+requires-python = ">=3.11"
+dependencies = []
 
 [build-system]
-requires = ["poetry-core>=1.5.0"]
-build-backend = "poetry.core.masonry.api"
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[dependency-groups]
+dev = [
+    "ipykernel>=6.29.5",
+    "mypy>=1.14.1",
+    "pylint>=3.3.3",
+    "pytest>=8.3.4",
+    "pytest-cov>=6.0.0",
+    "regex>=2024.11.6",
+    "rich>=13.9.4",
+]
 
 [tool.ruff]
 lint.ignore = [
