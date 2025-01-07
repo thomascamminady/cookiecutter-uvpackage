@@ -1,4 +1,4 @@
-[tool.poetry]
+[project]
 name = "{{ cookiecutter.project_slug }}"
 version = "0.1.0"
 description = ""
