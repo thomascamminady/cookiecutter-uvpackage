@@ -34,10 +34,8 @@ make
 
 And you're done!
 
-> **Note**: For this to work, you **must not** be in an active `poetry` environment.
 
 * GitHub repo: [https://github.com/thomascamminady/cookiecutter-uvpackage](https://github.com/thomascamminady/cookiecutter-pypackage)
 * Forked from: [https://github.com/audreyfeldroy/cookiecutter-pypackage](https://github.com/audreyfeldroy/cookiecutter-pypackage)
 * Free software: BSD license
-
-[Cookiecutter](https://github.com/cookiecutter/cookiecutter)
+* [Cookiecutter](https://github.com/cookiecutter/cookiecutter)
