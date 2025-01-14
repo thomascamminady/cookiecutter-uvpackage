@@ -9,10 +9,10 @@ all:
 	if command -v code > /dev/null; then code . ; fi
 	$(MAKE) remotegit
 
-uv: 
+uv:
 	uv python install 3.12
 	uv sync
-	uv tool install isort 
+	uv tool install isort
 	uv tool install pre-commit
 	uv tool install pytest
 	uv tool install pyclean

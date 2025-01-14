@@ -1,12 +1,12 @@
-[tool.poetry]
-name = "UV Project Template"
-version = "1.0.0"
+[project]
+name = "uv-cookiecutter-template"
+version = "0.1.0"
 description = ""
 authors = [
     { name = "Thomas Camminady", email = "thomas@camminady.dev" }
 ]
-[tool.poetry.dependencies]
 readme = "README.md"
 requires-python = ">=3.11"
-dependencies = []
-
+dependencies = [
+    "pre-commit>=4.0.1",
+]
