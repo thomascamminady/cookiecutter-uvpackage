@@ -26,8 +26,9 @@ git:
 
 remotegit:
 	git branch -M main
-	-git remote add origin git@github.com:{{ cookiecutter.github_username }}/{{ cookiecutter.github_reponame }}.git
-	-git push -u origin main
+	git remote add origin git@github.com:thomascamminady/my_project.git || true
+	git push -u origin main || echo "Warning: Remote repository not linked. Please create it on GitHub and try again."
+
 
 test:
 	uvx pytest .
