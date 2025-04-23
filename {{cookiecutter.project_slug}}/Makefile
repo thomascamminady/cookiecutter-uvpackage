@@ -10,7 +10,7 @@ all:
 	$(MAKE) remotegit
 
 uv:
-	uv python install 3.12
+	uv python install 3.13
 	uv sync
 	uv tool install isort
 	uv tool install pre-commit
