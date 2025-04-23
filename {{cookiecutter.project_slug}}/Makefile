@@ -35,3 +35,6 @@ test:
 
 coverage:
 	uvx pytest --cov={{cookiecutter.project_slug}} tests/
+
+hello_world:
+	uv run scripts/hello_world.py
