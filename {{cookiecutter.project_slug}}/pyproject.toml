@@ -49,6 +49,33 @@ lint.select = [
     "W",
     "I001",
 ]
+exclude = [
+  # VCS metadata
+  ".git",
+  ".github",
+
+  # Virtual-envs & caches
+  ".venv",
+  "__pycache__",
+  ".ipynb_checkpoints",
+  ".mypy_cache",
+  ".pytest_cache",
+  ".ruff_cache",
+
+  # Docs, data & notebooks
+  "docs/**",
+
+  # Non-Python files
+  "*.md",
+  "*.toml",
+  "*.yaml",
+  "*.yml",
+  "*.html",
+  "*.json",
+
+  # Python bytecode
+  "*.pyc",
+]
 
 [tool.ruff.lint.mccabe]
 max-complexity = 10
