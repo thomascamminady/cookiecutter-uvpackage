@@ -1,3 +1,4 @@
+#!/usr/bin/env -S uv run --script
 # /// script
 # requires-python = ">=3.13"
 # dependencies = [
@@ -11,9 +12,9 @@ from rich import print
 
 
 def main():
-    print("Hello, World!")
+    print("Run via `uv run hello_world.py`")
+    print("Or `chmod +x scripts/hello_world.py` and `./scripts/hello_world.py`")
 
 
 if __name__ == "__main__":
     main()
-
