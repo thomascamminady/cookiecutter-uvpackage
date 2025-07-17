@@ -26,6 +26,10 @@ dev = [
     "ruff>=0.12.4",
     "ty>=0.0.1a15",
 ]
+docs = [
+    "pdoc>=14.0.0",
+    "rich>=13.9.4",
+]
 
 [tool.ruff]
 lint.ignore = [
