@@ -1,8 +1,30 @@
 # .github/dependabot.yml
 version: 2
 updates:
-  - package-ecosystem: "pip" # For Python projects
-    directory: "/{{cookiecutter.project_slug}}" # Location of package manifests
+  # Update dependencies for the template itself
+  - package-ecosystem: "pip"
+    directory: "/"
     schedule:
-      interval: "daily"
-    open-pull-requests-limit: 10
+      interval: "weekly"
+    open-pull-requests-limit: 5
+
+  # Update pre-commit hooks for the template
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
+
+  # Update GitHub Actions in the template
+  - package-ecosystem: "github-actions"
+    directory: "/{{cookiecutter.project_slug}}/.github"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
+
+  # Update dependencies for generated projects (for testing)
+  - package-ecosystem: "pip"
+    directory: "/{{cookiecutter.project_slug}}"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
