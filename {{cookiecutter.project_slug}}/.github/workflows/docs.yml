@@ -12,14 +12,20 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-python@v4
-        with:
-          python-version: '3.13'
-      - run: pip install -e .           # your deps
-      - run: pip install pdoc rich
-      - run: pdoc {{ cookiecutter.project_slug }} -o docs  --docformat numpy
 
-      - uses: actions/upload-pages-artifact@v1
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+
+      - name: Set up Python
+        run: uv python install
+
+      - name: Install the project
+        run: uv sync --group docs
+
+      # ADJUST THIS: build your documentation into docs/.
+      - run: uv run pdoc {{ cookiecutter.project_slug }} -o docs --docformat numpy
+
+      - uses: actions/upload-pages-artifact@v3
         with:
           path: docs/
 
@@ -31,7 +37,7 @@ jobs:
       id-token: write
     environment:
       name: github-pages
-      url: ${{ "{{" }} steps.deployment.outputs.page_url {{ "}}" }}
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - id: deployment
         uses: actions/deploy-pages@v4
