@@ -1,8 +1,15 @@
 # .github/dependabot.yml
 version: 2
 updates:
-  - package-ecosystem: "pip" # For Python projects
+  - package-ecosystem: "pip" # UV uses pip ecosystem for now
     directory: "/" # Location of package manifests
     schedule:
       interval: "weekly"
     open-pull-requests-limit: 10
+    # UV-specific configuration
+    ignore:
+      - dependency-name: "*"
+        update-types: [ "version-update:semver-major" ]
+    commit-message:
+      prefix: "deps"
+      include: "scope"
