@@ -18,13 +18,13 @@ build-backend = "hatchling.build"
 
 [dependency-groups]
 dev = [
-    "ipykernel>=6.29.5",
-    "mypy>=1.14.1",
-    "pylint>=3.3.3",
+    "ipykernel>=6.30.0",
+    "regex>=2024.11.6",
     "pytest>=8.3.4",
     "pytest-cov>=6.0.0",
-    "regex>=2024.11.6",
     "rich>=13.9.4",
+    "ruff>=0.12.4",
+    "ty>=0.0.1a15",
 ]
 
 [tool.ruff]
