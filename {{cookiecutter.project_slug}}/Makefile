@@ -16,6 +16,7 @@ uv:
 	uv tool install pre-commit
 	uv tool install pytest
 	uv tool install pyclean
+	uvx pre-commit autoupdate
 
 git:
 	git init
