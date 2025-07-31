@@ -16,11 +16,11 @@ uv:
 	uv tool install pre-commit
 	uv tool install pytest
 	uv tool install pyclean
-	uvx pre-commit autoupdate
 
 git:
 	git init
 	git lfs install
+	uvx pre-commit autoupdate
 	git add .
 	uvx pre-commit run --all-files
 	git commit -am "First commit after initializing the project."
