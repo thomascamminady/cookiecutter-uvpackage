@@ -5,7 +5,7 @@ A modern, opinionated Cookiecutter template for Python packages using UV for dep
 ## Features
 
 -   **UV-first**: Uses `uv` for dependency management, packaging, and tool execution
--   **Modern Python**: Supports Python 3.11+ with type hints and modern syntax
+-   **Modern Python**: Supports Python 3.9+ with configurable Python version selection
 -   **Quality Assurance**: Pre-commit hooks with Ruff, MyPy, Pytest, and more
 -   **Documentation**: Automated documentation generation with pdoc and GitHub Pages
 -   **CI/CD**: GitHub Actions for testing, documentation, and dependency updates
@@ -45,6 +45,7 @@ make
 -   `github_reponame`: GitHub repository name (auto-generated)
 -   `project_short_description`: Brief description of your project
 -   `version`: Initial version (default: 0.1.0)
+-   `python_version`: Python version to use (3.9, 3.10, 3.11, 3.12, 3.13 - default: 3.11)
 -   `open_source_license`: Choose from MIT, BSD, ISC, Apache, GPL, or proprietary
 
 ## Generated Project Structure

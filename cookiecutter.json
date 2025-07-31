@@ -9,6 +9,13 @@
     "pypi_username": "{{ cookiecutter.github_username }}",
     "add_pyup_badge": "n",
     "version": "0.1.0",
+    "python_version": [
+        "3.11",
+        "3.9",
+        "3.10",
+        "3.12",
+        "3.13"
+    ],
     "open_source_license": [
         "MIT license",
         "BSD license",
