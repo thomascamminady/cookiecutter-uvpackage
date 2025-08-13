@@ -6,6 +6,9 @@ on:
     - cron: '0 9 * * 1'
   workflow_dispatch: # Allow manual triggering
 
+permissions:
+  contents: write
+  
 jobs:
   update-precommit:
     runs-on: ubuntu-latest
