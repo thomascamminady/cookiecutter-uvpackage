@@ -35,15 +35,16 @@ jobs:
             github_username="testuser" \
             python_version="${{ matrix.python-version }}"
 
-      # From here on, operate only inside the generated project
-      - name: Prepare generated project (init git so pre-commit scopes here)
+      - name: Prepare generated project (init git so pre-commit only runs here)
         working-directory: test_project
         run: |
           git init -b master
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A
           git commit -m "init"
 
-      - name: Sync deps
+      - name: Sync dependencies
         working-directory: test_project
         run: uv sync --all-extras --dev
 
@@ -51,7 +52,7 @@ jobs:
         working-directory: test_project
         run: uv run pytest -q
 
-      - name: Pre-commit (generated project only)
+      - name: Run pre-commit hooks (generated project only)
         working-directory: test_project
         run: |
           uv tool install pre-commit
