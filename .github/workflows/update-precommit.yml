@@ -2,13 +2,13 @@ name: Update Pre-commit Hooks
 
 on:
   schedule:
-    # Run weekly on Mondays at 9 AM UTC
-    - cron: '0 9 * * 1'
-  workflow_dispatch: # Allow manual triggering
+    - cron: '0 9 * * 1'   # Mondays 09:00 UTC
+  workflow_dispatch:
 
 permissions:
-  contents: write
-  
+  contents: write         # allow pushing the branch
+  pull-requests: write    # allow creating/updating the PR
+
 jobs:
   update-precommit:
     runs-on: ubuntu-latest
@@ -16,6 +16,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
 
       - name: Install uv
         uses: astral-sh/setup-uv@v5
@@ -33,9 +34,9 @@ jobs:
         id: verify-changed-files
         run: |
           if [ -n "$(git status --porcelain)" ]; then
-            echo "changed=true" >> $GITHUB_OUTPUT
+            echo "changed=true" >> "$GITHUB_OUTPUT"
           else
-            echo "changed=false" >> $GITHUB_OUTPUT
+            echo "changed=false" >> "$GITHUB_OUTPUT"
           fi
 
       - name: Create Pull Request
