@@ -25,19 +25,35 @@ jobs:
       - name: Install cookiecutter
         run: uv tool install cookiecutter
 
-      - name: Test template generation
+      - name: Generate project (no prompts)
         run: |
-          # Test with default values
-          uv tool run cookiecutter --no-input . project_name="Test Project" full_name="Test User" email="test@example.com" github_username="testuser"
+          uv tool run cookiecutter --no-input . \
+            project_name="Test Project" \
+            project_slug="test_project" \
+            full_name="Test User" \
+            email="test@example.com" \
+            github_username="testuser" \
+            python_version="${{ matrix.python-version }}"
 
-      - name: Test generated project
+      # From here on, operate only inside the generated project
+      - name: Prepare generated project (init git so pre-commit scopes here)
+        working-directory: test_project
         run: |
-          cd test_project
-          uv sync --all-extras --dev
-          uv run pytest tests/
+          git init -b master
+          git add -A
+          git commit -m "init"
 
-      - name: Test pre-commit hooks
+      - name: Sync deps
+        working-directory: test_project
+        run: uv sync --all-extras --dev
+
+      - name: Run pytest (generated project only)
+        working-directory: test_project
+        run: uv run pytest -q
+
+      - name: Pre-commit (generated project only)
+        working-directory: test_project
         run: |
-          cd test_project
           uv tool install pre-commit
+          uv tool run pre-commit install
           uv tool run pre-commit run --all-files
