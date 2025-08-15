@@ -147,7 +147,7 @@ class AltairConfig:
                                 "labelFontWeight": font_weight,
                                 "titleFontSize": medium_font_size,
                                 "labelFontSize": small_font_size,
-                                "labelLimit" 0,
+                                "labelLimit": 0,
                                 "color": dark_color,
                                 "titleColor": dark_color,
                                 "labelColor": dark_color,
