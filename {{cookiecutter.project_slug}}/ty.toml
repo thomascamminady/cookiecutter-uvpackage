@@ -1,0 +1,10 @@
+
+[environment]
+python-version = "{{ cookiecutter.python_version }}"
+
+[src]
+include = [
+    "src",
+    "tests",
+    "development"
+]
