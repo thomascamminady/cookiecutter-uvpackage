@@ -6,8 +6,8 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write         # allow pushing the branch
-  pull-requests: write    # allow creating/updating the PR
+  contents: write # allow pushing the branch
+  pull-requests: write # allow creating/updating the PR
 
 jobs:
   update-precommit:
@@ -44,8 +44,8 @@ jobs:
         uses: peter-evans/create-pull-request@v6
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          commit-message: "chore: update pre-commit hooks to latest versions"
-          title: "🔄 Update pre-commit hooks"
+          commit-message: 'chore: update pre-commit hooks to latest versions'
+          title: '🔄 Update pre-commit hooks'
           body: |
             This PR updates the pre-commit hooks to their latest versions.
 

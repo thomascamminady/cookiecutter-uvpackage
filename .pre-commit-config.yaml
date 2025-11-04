@@ -22,7 +22,7 @@ repos:
     rev: 'v0.14.3'
     hooks:
       - id: ruff
-        args: [ --fix, --exit-non-zero-on-fix ]
+        args: [ --fix, --exit-non-zero-on-fix, --ignore=S101 ]
         exclude: '{{cookiecutter\.project_slug}}/.*'
 
   - repo: https://github.com/kynan/nbstripout
@@ -56,10 +56,12 @@ repos:
     hooks:
       - id: pytest-check
         name: pytest-check
-        entry: uvx pytest
-        language: system
+        entry: uv run pytest
+        language: python
+        types: [ python ]
         pass_filenames: false
         always_run: true
+        additional_dependencies: [ "pytest", "cookiecutter" ]
 
   - repo: https://github.com/astral-sh/uv-pre-commit
     # uv version.

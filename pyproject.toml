@@ -10,3 +10,14 @@ requires-python = ">=3.11"
 dependencies = [
     "pre-commit>=4.0.1",
 ]
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+    "cookiecutter",
+]
+
+[tool.pytest.ini_options]
+testpaths = [
+    "tests",
+]

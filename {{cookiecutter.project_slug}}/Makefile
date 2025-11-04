@@ -21,8 +21,8 @@ git:
 	git init
 	git lfs install
 	uvx pre-commit autoupdate
+	uvx pre-commit run --all-files || true
 	git add .
-	uvx pre-commit run --all-files
 	git commit -am "First commit after initializing the project."
 
 remotegit:
