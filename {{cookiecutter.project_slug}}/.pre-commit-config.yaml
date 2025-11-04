@@ -13,34 +13,43 @@ repos:
         exclude: '.*\.(txt|csv)'
 
   - repo: https://github.com/asottile/pyupgrade
-    rev: v3.16.0
+    rev: v3.21.0
     hooks:
       - id: pyupgrade
         name: pyupgrade (.py files)
 
-  - repo: https://github.com/charliermarsh/ruff-pre-commit
-    rev: 'v0.5.7'
-    hooks:
-      - id: ruff
-        args: [ --fix, --exit-non-zero-on-fix ]
-
   - repo: https://github.com/kynan/nbstripout
-    rev: 0.7.1
+    rev: 0.8.1
     hooks:
       - id: nbstripout
         name: nbstripout (.ipynb files)
 
   - repo: https://github.com/nbQA-dev/nbQA
-    rev: 1.8.5
+    rev: 1.9.1
     hooks:
       - id: nbqa-pyupgrade
         args: [ '--py39-plus' ]
         name: pyupgrade (.ipynb files)
-      - id: nbqa-isort
-        args: [ '--float-to-top' ]
-        name: isort (.ipynb files)
-      # - id: nbqa-black
-      #   name: black (.ipynb files)
+      - id: nbqa-ruff
+        name: ruff (.ipynb files)
+        args: [ "--fix", "--exit-non-zero-on-fix" ]
+
+  - repo: https://github.com/charliermarsh/ruff-pre-commit
+    rev: 'v0.14.2'
+    hooks:
+      - id: ruff
+        args: [ --fix, --exit-non-zero-on-fix ]
+
+  - repo: https://github.com/astral-sh/uv-pre-commit
+    # uv version.
+    rev: 0.9.7
+    hooks:
+      - id: uv-lock
+        name: uv-lock
+        description: Update uv.lock file
+      - id: uv-export
+        name: uv-export
+        description: Export requirements for compatibility
 
   - repo: local
     hooks:
@@ -59,19 +68,3 @@ repos:
         language: system
         pass_filenames: false
         always_run: true
-
-  - repo: https://github.com/astral-sh/uv-pre-commit
-    # uv version.
-    rev: 0.5.8
-    hooks:
-      - id: uv-lock
-        name: uv-lock
-        description: Update uv.lock file
-
-  - repo: https://github.com/astral-sh/uv-pre-commit
-    # uv version.
-    rev: 0.5.8
-    hooks:
-      - id: uv-export
-        name: uv-export
-        description: Export requirements for compatibility
