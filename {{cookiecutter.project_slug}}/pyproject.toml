@@ -28,7 +28,6 @@ dev = [
 ]
 docs = [
     "pdoc>=14.0.0",
-    "rich>=13.9.4",
 ]
 
 [tool.pylint.MASTER]
