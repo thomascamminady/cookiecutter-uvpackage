@@ -1,7 +1,7 @@
 import logging  # Importing the standard Python logging module
 import os  # Importing the standard Python os module for operating system interactions
 
-from rich.logging import RichHandler
+from rich.logging import RichHandler # ty: ignore
 
 # Importing the RichHandler from rich, a library for rich text and beautiful formatting in the terminal
 from {{cookiecutter.project_slug}}.utils.config import Config
