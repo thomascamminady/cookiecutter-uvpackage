@@ -4,17 +4,14 @@
     "github_username": "thomascamminady",
     "project_name": "My Project",
     "project_slug": "{{ cookiecutter.project_name.lower().replace(' ', '_').replace('-', '_') }}",
-    "github_reponame": "{{cookiecutter.project_slug}}",
+    "github_reponame": "{{ cookiecutter.project_slug }}",
     "project_short_description": "",
-    "pypi_username": "{{ cookiecutter.github_username }}",
-    "add_pyup_badge": "n",
     "version": "0.1.0",
     "python_version": [
-        "3.11",
-        "3.9",
-        "3.10",
+        "3.14",
+        "3.13",
         "3.12",
-        "3.13"
+        "3.11"
     ],
     "open_source_license": [
         "MIT license",
@@ -23,5 +20,21 @@
         "Apache Software License 2.0",
         "GNU General Public License v3",
         "Not open source"
+    ],
+    "__license_spdx": "{{ {'MIT license': 'MIT', 'BSD license': 'BSD-3-Clause', 'ISC license': 'ISC', 'Apache Software License 2.0': 'Apache-2.0', 'GNU General Public License v3': 'GPL-3.0-or-later', 'Not open source': ''}[cookiecutter.open_source_license] }}",
+    "__prompts__": {
+        "full_name": "Author name",
+        "email": "Author email",
+        "github_username": "GitHub username",
+        "project_name": "Project name",
+        "project_slug": "Python package name",
+        "github_reponame": "GitHub repository name",
+        "project_short_description": "Short description",
+        "version": "Initial version",
+        "python_version": "Minimum Python version",
+        "open_source_license": "License"
+    },
+    "_copy_without_render": [
+        ".github/*"
     ]
 }

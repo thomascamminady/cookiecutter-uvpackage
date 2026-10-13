@@ -1,30 +1,54 @@
-# .github/dependabot.yml
 version: 2
 updates:
-  # Update dependencies for the template itself
-  - package-ecosystem: "pip"
-    directory: "/"
+  # The template repository itself.
+  - package-ecosystem: uv
+    directory: /
     schedule:
-      interval: "weekly"
-    open-pull-requests-limit: 5
+      interval: weekly
+    cooldown:
+      default-days: 7
+    groups:
+      python:
+        patterns: ["*"]
 
-  # Update pre-commit hooks for the template
-  - package-ecosystem: "github-actions"
-    directory: "/"
+  - package-ecosystem: github-actions
+    directory: /
     schedule:
-      interval: "weekly"
-    open-pull-requests-limit: 5
+      interval: weekly
+    cooldown:
+      default-days: 7
+    groups:
+      github-actions:
+        patterns: ["*"]
 
-  # Update GitHub Actions in the template
-  - package-ecosystem: "github-actions"
-    directory: "/{{cookiecutter.project_slug}}/.github"
+  - package-ecosystem: pre-commit
+    directory: /
     schedule:
-      interval: "weekly"
-    open-pull-requests-limit: 5
+      interval: monthly
+    cooldown:
+      default-days: 7
+    groups:
+      pre-commit:
+        patterns: ["*"]
 
-  # Update dependencies for generated projects (for testing)
-  - package-ecosystem: "pip"
-    directory: "/{{cookiecutter.project_slug}}"
+  # The generated project. Its pyproject.toml contains Jinja, so its Python
+  # lower bounds are bumped by hand; actions and hooks are plain YAML.
+  - package-ecosystem: github-actions
+    directory: /{{cookiecutter.project_slug}}
     schedule:
-      interval: "weekly"
-    open-pull-requests-limit: 5
+      interval: weekly
+    cooldown:
+      default-days: 7
+    groups:
+      template-github-actions:
+        patterns: ["*"]
+
+  - package-ecosystem: pre-commit
+    directory: /{{cookiecutter.project_slug}}
+    schedule:
+      interval: monthly
+    cooldown:
+      default-days: 7
+    groups:
+      template-pre-commit:
+        patterns: ["*"]

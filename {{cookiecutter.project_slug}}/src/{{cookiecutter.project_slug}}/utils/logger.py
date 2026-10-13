@@ -1,43 +1,52 @@
-import logging  # Importing the standard Python logging module
-import os  # Importing the standard Python os module for operating system interactions
+"""Logger that writes to the terminal (via rich) and to a debug log file."""
 
-from rich.logging import RichHandler # ty: ignore
+import logging
 
-# Importing the RichHandler from rich, a library for rich text and beautiful formatting in the terminal
-from {{cookiecutter.project_slug}}.utils.config import Config
+from rich.logging import RichHandler
 
-config = Config()
+from {{ cookiecutter.project_slug }}.utils.config import Config
 
-# Set up a logger with the name of the current module.
-# This will allow us to track where logged messages are coming from.
-logger = logging.getLogger(__name__)
 
-# Create a handler for logging to the terminal, using the RichHandler from the rich library for nicer formatting.
-shell_handler = RichHandler()
+def create_logger(name: str, config: Config | None = None) -> logging.Logger:
+    """Create a logger with a rich terminal handler and a file handler.
 
-# If the log folder does not exist, create it.
-if not os.path.exists(config.foldername_log):
-    os.makedirs(config.foldername_log)
+    Calling this again with the same name returns the existing logger
+    without adding duplicate handlers.
 
-# Create a handler for logging to a file.
-file_handler = logging.FileHandler(config.filename_debug_log)
+    Parameters
+    ----------
+    name
+        Name of the logger.
+    config
+        Paths and log levels. Defaults to ``Config()``.
 
-# Set the log levels for the logger and the two handlers.
-# These determine the lowest severity of messages that will be handled.
-logger.setLevel(config.logger_level)
-shell_handler.setLevel(config.logger_shell_level)
-file_handler.setLevel(config.logger_file_level)
+    Returns
+    -------
+    logging.Logger
+        The configured logger.
+    """
+    logger = logging.getLogger(name)
+    if logger.handlers:
+        return logger
 
-# Create formatters with the format strings from the config.
-# These determine how the log messages will be formatted.
-shell_formatter = logging.Formatter(config.logger_shell_fmt)
-file_formatter = logging.Formatter(config.logger_file_fmt)
+    config = config or Config()
+    config.foldername_log.mkdir(parents=True, exist_ok=True)
 
-# Attach the formatters to the handlers.
-shell_handler.setFormatter(shell_formatter)
-file_handler.setFormatter(file_formatter)
+    shell_handler = RichHandler()
+    shell_handler.setLevel(config.logger_shell_level)
+    shell_handler.setFormatter(logging.Formatter(config.logger_shell_fmt))
 
-# Attach the handlers to the logger.
-# This means that whenever we use this logger, the log messages will be sent to both handlers.
-logger.addHandler(shell_handler)
-logger.addHandler(file_handler)
+    file_handler = logging.FileHandler(
+        config.filename_debug_log, encoding="utf-8"
+    )
+    file_handler.setLevel(config.logger_file_level)
+    file_handler.setFormatter(logging.Formatter(config.logger_file_fmt))
+
+    logger.setLevel(config.logger_level)
+    logger.addHandler(shell_handler)
+    logger.addHandler(file_handler)
+    logger.propagate = False
+    return logger
+
+
+logger = create_logger("{{ cookiecutter.project_slug }}")

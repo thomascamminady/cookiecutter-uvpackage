@@ -1,10 +1,10 @@
-
-[environment]
-python-version = "{{ cookiecutter.python_version }}"
+# The Python version is inferred from `requires-python` in pyproject.toml.
 
 [src]
-include = [
-    "src",
-    "tests",
-    "development"
-]
+include = ["src", "tests", "scripts"]
+
+[rules]
+all = "error"
+
+[terminal]
+error-on-warning = true

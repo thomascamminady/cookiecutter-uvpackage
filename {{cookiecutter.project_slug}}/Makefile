@@ -1,50 +1,63 @@
 SHELL := /bin/bash
+.SHELLFLAGS := -eu -o pipefail -c
+.DEFAULT_GOAL := all
 
-# phony targets
-.PHONY: all uv git test coverage
+PACKAGE := {{ cookiecutter.project_slug }}
+REMOTE := git@github.com:{{ cookiecutter.github_username }}/{{ cookiecutter.github_reponame }}.git
 
-all:
-	$(MAKE) uv
-	$(MAKE) git
-	if command -v code > /dev/null; then code . ; fi
-	$(MAKE) remotegit
+.PHONY: all help install git remote format lint typecheck test coverage check docs hello_world
 
-uv:
-	uv python install {{ cookiecutter.python_version }}
-	uv sync
-	uv tool install isort
-	uv tool install pre-commit
-	uv tool install pytest
-	uv tool install pyclean
+all: install git ## Bootstrap: install, initialize git, open VS Code, push to GitHub
+	@if command -v code >/dev/null; then code .; fi
+	$(MAKE) remote
 
-git:
-	git init
-	git lfs install
-	uvx pre-commit autoupdate
-	uvx pre-commit run --all-files || true
-	git add .
-	git commit -am "First commit after initializing the project."
+help: ## Show this help
+	@grep -E '^[a-z_]+:.*## ' $(MAKEFILE_LIST) | awk -F':.*## ' '{printf "  %-12s %s\n", $$1, $$2}'
 
-remotegit:
-	git branch -M main
-	git remote add origin git@github.com:{{ cookiecutter.github_username }}/{{ cookiecutter.github_reponame }}.git || true
-	@echo "Attempting to push to remote repository..."
-	@if git push -u origin main 2>/dev/null; then \
-		echo "✅ Successfully pushed to GitHub!"; \
-	else \
-		echo "⚠️  Could not push to remote repository."; \
-		echo "Please create the repository on GitHub first:"; \
-		echo "https://github.com/new"; \
-		echo "Repository name: {{ cookiecutter.github_reponame }}"; \
-		echo "Then run: git push -u origin main"; \
+install: ## Install Python and all dependencies
+	uv python install
+	uv sync --all-extras --all-groups
+
+git: ## Initialize the repository, install pre-commit hooks, make the first commit
+	@if [ ! -d .git ]; then git init -b main; fi
+	uv run pre-commit install
+	git add -A
+	uv run pre-commit run --all-files || true
+	git add -A
+	@if ! git rev-parse --verify HEAD >/dev/null 2>&1; then \
+		git commit -m "Initial commit"; \
 	fi
 
+remote: ## Add the GitHub remote and push
+	git remote add origin $(REMOTE) 2>/dev/null || true
+	@if git push -u origin main; then \
+		echo "✅ Pushed to GitHub."; \
+	else \
+		echo "⚠️  Could not push. Create the repository first: https://github.com/new"; \
+		echo "   Name: {{ cookiecutter.github_reponame }}, then run: git push -u origin main"; \
+	fi
 
-test:
-	uvx pytest .
+format: ## Auto-fix lint issues and format the code
+	uv run ruff check --fix
+	uv run ruff format
 
-coverage:
-	uvx pytest --cov={{cookiecutter.project_slug}} tests/
+lint: ## Lint and check formatting
+	uv run ruff check
+	uv run ruff format --check
 
-hello_world:
+typecheck: ## Type check with ty
+	uv run ty check
+
+test: ## Run the tests
+	uv run pytest
+
+coverage: ## Run the tests with a coverage report
+	uv run pytest --cov
+
+check: lint typecheck test ## Run all checks (same as CI)
+
+docs: ## Build the documentation into docs/
+	uv run --group docs pdoc $(PACKAGE) -o docs --docformat numpy
+
+hello_world: ## Run the example script
 	uv run scripts/hello_world.py

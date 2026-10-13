@@ -1,70 +1,54 @@
+# Ruff, ty and pytest run through `uv run`, so they use the exact versions
+# pinned in uv.lock (updated by Dependabot) instead of a second set of pins.
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.6.0
+    rev: v6.0.0
     hooks:
       - id: check-added-large-files
+      - id: check-case-conflict
       - id: check-merge-conflict
-      - id: detect-private-key
-      - id: trailing-whitespace
-        exclude: '.*\.(txt|csv)'
-      - id: end-of-file-fixer
-        exclude: '.*\.(txt|csv)'
+      - id: check-toml
       - id: check-yaml
-        exclude: '.*\.(txt|csv)'
-
-  - repo: https://github.com/asottile/pyupgrade
-    rev: v3.21.0
-    hooks:
-      - id: pyupgrade
-        name: pyupgrade (.py files)
+      - id: detect-private-key
+      - id: end-of-file-fixer
+      - id: mixed-line-ending
+      - id: trailing-whitespace
 
   - repo: https://github.com/kynan/nbstripout
-    rev: 0.8.1
+    rev: 0.9.1
     hooks:
       - id: nbstripout
-        name: nbstripout (.ipynb files)
-
-  - repo: https://github.com/nbQA-dev/nbQA
-    rev: 1.9.1
-    hooks:
-      - id: nbqa-pyupgrade
-        args: [ '--py39-plus' ]
-        name: pyupgrade (.ipynb files)
-      - id: nbqa-ruff
-        name: ruff (.ipynb files)
-        args: [ "--fix", "--exit-non-zero-on-fix" ]
-
-  - repo: https://github.com/charliermarsh/ruff-pre-commit
-    rev: 'v0.14.2'
-    hooks:
-      - id: ruff
-        args: [ --fix, --exit-non-zero-on-fix ]
 
   - repo: https://github.com/astral-sh/uv-pre-commit
-    # uv version.
-    rev: 0.9.7
+    rev: 0.13.0
     hooks:
       - id: uv-lock
-        name: uv-lock
-        description: Update uv.lock file
-      - id: uv-export
-        name: uv-export
-        description: Export requirements for compatibility
 
   - repo: local
     hooks:
-      - id: pyclean
-        name: pyclean
-        entry: uvx pyclean .
+      - id: ruff-check
+        name: ruff check
+        entry: uv run ruff check --fix --exit-non-zero-on-fix --force-exclude
         language: system
-        always_run: true
-        pass_filenames: false
-
-  - repo: local
-    hooks:
-      - id: pytest-check
-        name: pytest-check
-        entry: uvx pytest
+        types_or: [python, pyi, jupyter]
+        require_serial: true
+      - id: ruff-format
+        name: ruff format
+        entry: uv run ruff format --force-exclude
         language: system
+        types_or: [python, pyi, jupyter]
+        require_serial: true
+      - id: ty
+        name: ty check
+        entry: uv run ty check
+        language: system
+        types_or: [python, pyi, jupyter]
         pass_filenames: false
-        always_run: true
+        require_serial: true
+      - id: pytest
+        name: pytest
+        entry: uv run pytest
+        language: system
+        types_or: [python, pyi, jupyter]
+        pass_filenames: false
+        require_serial: true

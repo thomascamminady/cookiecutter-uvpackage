@@ -1,80 +1,63 @@
+# Ruff, ty and pytest run through `uv run`, so they use the exact versions
+# pinned in uv.lock (updated by Dependabot) instead of a second set of pins.
+#
+# Python and TOML files in the template directory contain Jinja; they are
+# linted, type checked and tested after baking (see tests/).
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v6.0.0
     hooks:
       - id: check-added-large-files
+      - id: check-case-conflict
+      - id: check-json
+        # VS Code settings are JSONC.
+        exclude: \.vscode/
       - id: check-merge-conflict
-      - id: detect-private-key
-      - id: trailing-whitespace
-        exclude: '.*\.(txt|csv)'
-      - id: end-of-file-fixer
-        exclude: '.*\.(txt|csv)'
+      - id: check-toml
+        exclude: ^\{\{cookiecutter\.project_slug\}\}/pyproject\.toml$
       - id: check-yaml
-        exclude: '.*\.(txt|csv)'
-
-  - repo: https://github.com/asottile/pyupgrade
-    rev: v3.21.2
-    hooks:
-      - id: pyupgrade
-        name: pyupgrade (.py files)
-
-  - repo: https://github.com/charliermarsh/ruff-pre-commit
-    rev: 'v0.15.8'
-    hooks:
-      - id: ruff
-        args: [ --fix, --exit-non-zero-on-fix, --ignore=S101 ]
-        exclude: '{{cookiecutter\.project_slug}}/.*'
+      - id: detect-private-key
+      - id: end-of-file-fixer
+      - id: mixed-line-ending
+      - id: trailing-whitespace
 
   - repo: https://github.com/kynan/nbstripout
     rev: 0.9.1
     hooks:
       - id: nbstripout
-        name: nbstripout (.ipynb files)
-
-  - repo: https://github.com/nbQA-dev/nbQA
-    rev: 1.9.1
-    hooks:
-      - id: nbqa-pyupgrade
-        args: [ '--py39-plus' ]
-        name: pyupgrade (.ipynb files)
-      - id: nbqa-isort
-        args: [ '--float-to-top' ]
-        name: isort (.ipynb files)
-      # - id: nbqa-black
-      #   name: black (.ipynb files)
-
-  - repo: local
-    hooks:
-      - id: pyclean
-        name: pyclean
-        entry: uvx pyclean .
-        language: system
-        always_run: true
-        pass_filenames: false
-
-  - repo: local
-    hooks:
-      - id: pytest-check
-        name: pytest-check
-        entry: uv run pytest
-        language: python
-        types: [ python ]
-        pass_filenames: false
-        always_run: true
-        additional_dependencies: [ "pytest", "cookiecutter" ]
 
   - repo: https://github.com/astral-sh/uv-pre-commit
-    # uv version.
-    rev: 0.11.2
+    rev: 0.13.0
     hooks:
       - id: uv-lock
-        name: uv-lock
-        description: Update uv.lock file
 
-  - repo: https://github.com/astral-sh/uv-pre-commit
-    # uv version.
-    rev: 0.11.2
+  - repo: local
     hooks:
-      - id: uv-export
-        name: uv-export
-        description: Export requirements for compatibility
+      - id: ruff-check
+        name: ruff check
+        entry: uv run ruff check --fix --exit-non-zero-on-fix --force-exclude
+        language: system
+        types_or: [python, pyi, jupyter]
+        require_serial: true
+        exclude: ^\{\{cookiecutter\.project_slug\}\}/
+      - id: ruff-format
+        name: ruff format
+        entry: uv run ruff format --force-exclude
+        language: system
+        types_or: [python, pyi, jupyter]
+        require_serial: true
+        exclude: ^\{\{cookiecutter\.project_slug\}\}/
+      - id: ty
+        name: ty check
+        entry: uv run ty check
+        language: system
+        types_or: [python, pyi]
+        pass_filenames: false
+        require_serial: true
+      - id: pytest
+        name: pytest (fast tests)
+        entry: uv run pytest -m "not integration"
+        language: system
+        pass_filenames: false
+        always_run: true
+        require_serial: true

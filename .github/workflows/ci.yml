@@ -1,0 +1,70 @@
+name: CI
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    name: Lint, type check and test the template
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - uses: astral-sh/setup-uv@1c37ad07a6a961277cf70c0d37d6f313000f5884 # v10.3.0
+
+      - name: Install dependencies
+        run: uv sync --locked
+
+      - name: Lint
+        run: uv run ruff check --output-format=github
+
+      - name: Check formatting
+        run: uv run ruff format --check
+
+      - name: Type check
+        run: uv run ty check --output-format=github
+
+      # Includes the integration tests, which bake a project for every
+      # supported Python version and run ruff, ty, pytest and uv build in it.
+      - name: Test
+        run: uv run pytest
+
+  baked-project:
+    name: Bootstrap a baked project with make and pre-commit
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - uses: astral-sh/setup-uv@1c37ad07a6a961277cf70c0d37d6f313000f5884 # v10.3.0
+
+      - name: Bake a project
+        run: uvx cookiecutter --no-input . project_name="Test Project"
+
+      - name: Install and make the first commit
+        working-directory: test_project
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          make install git
+
+      - name: Run all pre-commit hooks
+        working-directory: test_project
+        run: uv run pre-commit run --all-files --show-diff-on-failure
+
+      - name: Run all checks
+        working-directory: test_project
+        run: make check docs

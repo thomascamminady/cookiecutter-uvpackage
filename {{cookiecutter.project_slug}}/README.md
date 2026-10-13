@@ -1,13 +1,30 @@
-# {{cookiecutter.project_slug}}
-
-## Info
-Find this repository on [Github](https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.github_reponame }}) or check out the [documentation](https://{{ cookiecutter.github_username }}.github.io/{{ cookiecutter.github_reponame }}).
+# {{ cookiecutter.project_name }}
+{% if cookiecutter.project_short_description %}
+{{ cookiecutter.project_short_description }}
+{% endif %}
+[Repository](https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.github_reponame }}) ·
+[Documentation](https://{{ cookiecutter.github_username }}.github.io/{{ cookiecutter.github_reponame }})
 
 ## Development
-Set up the full project by running `make`.
+
+Requires [uv](https://docs.astral.sh/uv/). Run `make` once to install
+everything, initialize git with pre-commit hooks, and push to GitHub.
+
+| Command         | Description                                 |
+| --------------- | ------------------------------------------- |
+| `make install`  | Install Python and all dependencies         |
+| `make check`    | Lint, type check and test (same as CI)      |
+| `make format`   | Auto-fix lint issues and format the code    |
+| `make coverage` | Run the tests with a coverage report        |
+| `make docs`     | Build the documentation into `docs/`        |
 
 ## Documentation
-Go to `Settings->Pages` and set `Source` (under `Build and deployment`) to `Github Actions`.
+
+The documentation is built with [pdoc](https://pdoc.dev) and deployed to
+GitHub Pages. Enable it once under Settings → Pages → Build and deployment →
+Source: GitHub Actions.
 
 ## Credits
-This package was created with [`cookiecutter`](https://github.com/audreyr/cookiecutter) and [`thomascamminady/cookiecutter-pypackage`](https://github.com/thomascamminady/cookiecutter-pypackage), a fork of [`audreyr/cookiecutter-pypackage`](https://github.com/audreyr/cookiecutter-pypackage).
+
+Created with [cookiecutter](https://github.com/cookiecutter/cookiecutter) and
+[thomascamminady/cookiecutter-uvpackage](https://github.com/thomascamminady/cookiecutter-uvpackage).

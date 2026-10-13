@@ -1,15 +1,23 @@
+"""Validate the cookiecutter input before the project is generated."""
+
+import keyword
 import re
 import sys
 
-MODULE_REGEX = r"^[_a-zA-Z][_a-zA-Z0-9]+$"
+MODULE_REGEX = re.compile(r"[a-z_][a-z0-9_]*")
+PROJECT_SLUG = "{{ cookiecutter.project_slug }}"
 
-module_name = "{{ cookiecutter.project_slug}}"
 
-if not re.match(MODULE_REGEX, module_name):
-    print(
-        "ERROR: The project slug (%s) is not a valid Python module name. Please do not use a - and use _ instead"
-        % module_name
-    )
+def main() -> None:
+    """Abort generation if the project slug is not a valid module name."""
+    if not MODULE_REGEX.fullmatch(PROJECT_SLUG) or keyword.iskeyword(
+        PROJECT_SLUG
+    ):
+        sys.exit(
+            f"ERROR: {PROJECT_SLUG!r} is not a valid Python module name. "
+            "Use lowercase letters, digits and underscores only."
+        )
 
-    # Exit to cancel project
-    sys.exit(1)
+
+if __name__ == "__main__":
+    main()

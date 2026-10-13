@@ -1,45 +1,42 @@
-fix = true
-
-extend-include = ["*.ipynb"]
-
-lint.ignore = [
-    "D100",
-    "D101",
-    "D103",
-    "D104",
-    "D401",
-    "E501",
-]
+# The target Python version is inferred from `requires-python` in pyproject.toml.
 line-length = 80
-lint.select = [
-    "B",
-    "B9",
-    "C",
-    "D",
-    "E",
-    "F",
-    "N",
-    "S",
-    "W",
-    "I001",
+
+[format]
+docstring-code-format = true
+
+[lint]
+select = ["ALL"]
+ignore = [
+    "COM812", # conflicts with the formatter
+    "CPY001", # no copyright header in every file
+    "D100",   # missing docstring in public module
+    "D101",   # missing docstring in public class
+    "D103",   # missing docstring in public function
+    "D104",   # missing docstring in public package
+    "D401",   # first line of docstring in imperative mood
+    "E501",   # line length is handled by the formatter
+    "FIX002", # TODOs are allowed ...
+    "TD002",  # ... without an author
+    "TD003",  # ... and without an issue link
 ]
-exclude = [
-  ".git",
-  ".github",
-  ".venv",
-  "__pycache__",
-  ".ipynb_checkpoints",
-  ".mypy_cache",
-  ".pytest_cache",
-  ".ruff_cache",
-  "docs/**",
-  "*.md",
-  "*.toml",
-  "*.yaml",
-  "*.yml",
-  "*.html",
-  "*.json",
-  "*.pyc",
+
+[lint.per-file-ignores]
+"tests/**" = [
+    "PLR2004", # magic values in assertions
+    "S101",    # assert
+]
+"scripts/**" = [
+    "INP001", # scripts are not part of a package
+    "T201",   # print
+]
+"*.ipynb" = [
+    "B018",   # bare expressions display output
+    "INP001", # notebooks are not part of a package
+    "T201",   # print
+]
+"src/*/__init__.py" = [
+    "D205", # pdoc include directive in the package docstring
+    "D400",
 ]
 
 [lint.mccabe]
@@ -47,10 +44,3 @@ max-complexity = 10
 
 [lint.pydocstyle]
 convention = "numpy"
-
-[lint.per-file-ignores]
-"tests/*" = ["S101"]
-"**/__init__.py" = [
-    "D200",
-    "D400",
-]

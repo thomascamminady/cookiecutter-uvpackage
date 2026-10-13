@@ -2,19 +2,28 @@
 # /// script
 # requires-python = ">={{ cookiecutter.python_version }}"
 # dependencies = [
-#   "rich",
+#     "fire>=0.7.1",
 # ]
 # ///
-# pyright: reportMissingModuleSource=false
-# pyright: reportMissingImports=false
+"""Example of a self-contained script with inline dependencies.
 
-from rich import print
+Run it with `uv run scripts/hello_world.py --name=you` or, since it is
+executable, `./scripts/hello_world.py --name=you`.
+"""
+
+import fire
 
 
-def main():
-    print("Run via `uv run scripts/hello_world.py`")
-    print("Or `chmod +x scripts/hello_world.py` and `./scripts/hello_world.py`")
+def main(name: str = "World") -> None:
+    """Greet someone.
+
+    Parameters
+    ----------
+    name
+        Who to greet.
+    """
+    print(f"Hello, {name}!")
 
 
 if __name__ == "__main__":
-    main()
+    fire.Fire(main)

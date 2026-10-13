@@ -1,50 +1,65 @@
 [project]
 name = "{{ cookiecutter.project_slug }}"
-version = "0.1.0"
-description = ""
-authors = [
-    { name = "{{ cookiecutter.full_name }}", email = "{{ cookiecutter.email }}" }
-]
+version = "{{ cookiecutter.version }}"
+description = "{{ cookiecutter.project_short_description }}"
 readme = "README.md"
-repository = "https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.github_reponame }}"
-homepage = "https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.github_reponame }}"
-documentation = "https://{{ cookiecutter.github_username }}.github.io/{{ cookiecutter.github_reponame }}"
+authors = [
+    { name = "{{ cookiecutter.full_name }}", email = "{{ cookiecutter.email }}" },
+]
+{%- if cookiecutter.__license_spdx %}
+license = "{{ cookiecutter.__license_spdx }}"
+license-files = ["LICENSE"]
+{%- endif %}
 requires-python = ">={{ cookiecutter.python_version }}"
-dependencies = []
+classifiers = [
+    "Programming Language :: Python :: 3 :: Only",
+    "Typing :: Typed",
+{%- if not cookiecutter.__license_spdx %}
+    "Private :: Do Not Upload",
+{%- endif %}
+]
+dependencies = [
+    "rich>=15.0.0",
+]
+
+[project.optional-dependencies]
+viz = [
+    "altair>=6.3.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.github_reponame }}"
+Repository = "https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.github_reponame }}"
+Documentation = "https://{{ cookiecutter.github_username }}.github.io/{{ cookiecutter.github_reponame }}"
 
 [build-system]
-requires = ["hatchling"]
-build-backend = "hatchling.build"
+requires = ["uv_build>=0.13.0,<0.14"]
+build-backend = "uv_build"
 
 [dependency-groups]
 dev = [
-    "ipykernel>=7.1.0",
-    "regex>=2024.11.6",
-    "pytest>=8.3.4",
-    "pytest-cov>=6.0.0",
-    "rich>=13.9.4",
-    "ruff>=0.14.3",
-    "ty>=0.0.1a25",
+    "altair>=6.3.0",
+    "fire>=0.7.1",
+    "ipykernel>=7.4.0",
+    "pre-commit>=4.7.0",
+    "pytest>=9.1.1",
+    "pytest-cov>=7.1.0",
+    "ruff>=0.17.0",
+    "ty>=0.0.86",
 ]
 docs = [
-    "pdoc>=14.0.0",
+    "pdoc>=16.0.0",
 ]
 
-[tool.pylint.MASTER]
-disable=[
-    "C0114", # missing-module-docstring
-    "C0115", # missing-class-docstring
-]
+[tool.pytest]
+strict = true
+testpaths = ["tests"]
+addopts = ["-ra"]
+filterwarnings = ["error"]
 
-[tool.pyright]
-exclude = [
-    ".venv/*",
-    ".mypy_cache/*",
-    ".pytest_cache/*",
-    ".ruff_cache/*",
-    ".ipynb_checkpoints/*",
-    ".git/*",
-    ".github/*",
-    "**/__pycache__/*",
-    "**/*.pyc",
-]
+[tool.coverage.run]
+branch = true
+source_pkgs = ["{{ cookiecutter.project_slug }}"]
+
+[tool.coverage.report]
+show_missing = true

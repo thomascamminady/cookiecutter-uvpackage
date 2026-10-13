@@ -1,31 +1,29 @@
-import logging  # Importing the standard Python logging module
-from dataclasses import dataclass
+"""Project-wide configuration."""
 
-# Importing the dataclass decorator from Python's built-in dataclasses module
+import logging
+from dataclasses import dataclass
 from pathlib import Path
 
+# src/<package>/utils/config.py -> project root (assumes an editable install,
+# which is what `uv sync` does by default).
+PROJECT_ROOT = Path(__file__).resolve().parents[3]
 
-# Define a dataclass for the application's configuration.
-# Dataclasses are a way to make classes that mainly store values,
-# without needing to write explicit methods for tasks like printing or comparing objects.
-@dataclass
+
+@dataclass(frozen=True, slots=True, kw_only=True)
 class Config:
-    # Define the root folder path as the grandparent of the folder containing this file
-    foldername_root: Path = Path(__file__).parent.parent.parent.resolve()
-    # Define the log folder path as a subfolder named 'logs' in the root folder
-    foldername_log: Path = foldername_root / "logs"
-    # Define the debug log file path as a file named 'debug.log' in the log folder
-    filename_debug_log: Path = foldername_log / "debug.log"
+    """Paths and logging settings."""
 
-    # Define the log levels for the logger and the two handlers
-    # These levels represent the lowest severity of messages that will be handled.
+    foldername_root: Path = PROJECT_ROOT
+    foldername_log: Path = PROJECT_ROOT / "logs"
+
     logger_level: int = logging.DEBUG
     logger_shell_level: int = logging.DEBUG
     logger_file_level: int = logging.DEBUG
 
-    # Define the log formats for shell and file handlers
-    # These formats determine how the log messages will be formatted
     logger_shell_fmt: str = "%(message)s"
-    logger_file_fmt: (
-        str
-    ) = "%(levelname)s %(asctime)s [%(filename)s:%(funcName)s:%(lineno)d] \t%(message)s"
+    logger_file_fmt: str = "%(levelname)s %(asctime)s [%(filename)s:%(funcName)s:%(lineno)d] %(message)s"
+
+    @property
+    def filename_debug_log(self) -> Path:
+        """Path of the debug log file."""
+        return self.foldername_log / "debug.log"

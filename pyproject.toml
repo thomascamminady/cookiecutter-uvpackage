@@ -1,23 +1,72 @@
 [project]
-name = "uv-cookiecutter-template"
+name = "cookiecutter-uvpackage"
 version = "0.1.0"
-description = ""
-authors = [
-    { name = "Thomas Camminady", email = "thomas@camminady.dev" }
-]
+description = "Cookiecutter template for strictly typed Python packages managed with uv."
 readme = "README.md"
+authors = [
+    { name = "Thomas Camminady", email = "thomas@camminady.dev" },
+]
 requires-python = ">=3.11"
-dependencies = [
-    "pre-commit>=4.0.1",
-]
+dependencies = []
 
-[project.optional-dependencies]
+[dependency-groups]
 dev = [
-    "pytest",
-    "cookiecutter",
+    "cookiecutter>=2.7.1",
+    "pre-commit>=4.7.0",
+    "pytest>=9.1.1",
+    "ruff>=0.17.0",
+    "ty>=0.0.86",
 ]
 
-[tool.pytest.ini_options]
-testpaths = [
-    "tests",
+[tool.uv]
+package = false
+
+[tool.pytest]
+strict = true
+testpaths = ["tests"]
+addopts = ["-ra"]
+markers = [
+    "integration: bakes a project and runs uv, ruff, ty and pytest in it (slow, needs network)",
 ]
+
+[tool.ruff]
+line-length = 80
+# Template files contain Jinja and are checked after baking (see tests/).
+extend-exclude = ["[{][{]cookiecutter.project_slug[}][}]"]
+
+[tool.ruff.format]
+docstring-code-format = true
+
+[tool.ruff.lint]
+select = ["ALL"]
+ignore = [
+    "COM812", # conflicts with the formatter
+    "CPY001", # no copyright header in every file
+    "D100",   # missing docstring in public module
+    "D103",   # missing docstring in public function
+    "E501",   # line length is handled by the formatter
+]
+
+[tool.ruff.lint.per-file-ignores]
+"hooks/*" = [
+    "INP001", # cookiecutter hooks are standalone scripts
+    "T201",   # print
+]
+"tests/**" = [
+    "S101",   # assert
+    "S603",   # subprocess with trusted, static arguments
+    "S607",   # partial executable paths (uv)
+    "INP001", # tests are not a package
+]
+
+[tool.ruff.lint.pydocstyle]
+convention = "numpy"
+
+[tool.ty.src]
+include = ["hooks", "tests"]
+
+[tool.ty.rules]
+all = "error"
+
+[tool.ty.terminal]
+error-on-warning = true
